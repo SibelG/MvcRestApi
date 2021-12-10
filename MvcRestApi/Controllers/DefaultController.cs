@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
+
 using System.Web.Mvc;
 
 namespace MvcRestApi.Controllers
@@ -52,54 +53,17 @@ namespace MvcRestApi.Controllers
         // GET: Default/Details/5
         public ActionResult Details(int id)
         {
-            Student student = null;
 
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:44301/api/");
-                //HTTP GET
-                var responseTask = client.GetAsync("StudentApi?id=" + id.ToString());
-                responseTask.Wait();
-
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var readTask = result.Content.ReadAsAsync<Student>();
-                    readTask.Wait();
-
-                    student = readTask.Result;
-                }
-            }
-            return View(student);
-
+            return View();
 
         }
         [HttpPost]
         public ActionResult Details(Student student)
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:44301/api/StudentApi");
-
-                //HTTP POST
-                var putTask = client.PutAsJsonAsync<Student>("StudentApi", student);
-                putTask.Wait();
-
-                var result = putTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-
-                    return RedirectToAction("Index");
-                }
-            }
-            return View(student);
+            
+            return View();
         }
     
-
-
- 
-
-
 
         // POST: Default/Create
         [HttpPost]

@@ -98,10 +98,10 @@ namespace MvcRestApi.Controllers
         // POST: Student/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int Studentid)
+        public ActionResult Delete(int id)
         {
             
-            var data = OgrenciData.OgrenciList.StudentList.FirstOrDefault(x => x.Id == Studentid);
+            var data = OgrenciData.OgrenciList.StudentList.FirstOrDefault(x => x.Id == id);
             if (data != null)
             {
                 OgrenciData.OgrenciList.StudentList.Remove(data);
